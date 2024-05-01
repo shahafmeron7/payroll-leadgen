@@ -3,7 +3,7 @@ import styles from "./BrandsLayout.module.css";
 
 import { brandsCards } from "../../utils/data/brandsData";
 const BrandCard = ({ card }) => {
-  const outlink = `https://out.sonary.com/track/click/?pid=${card.pid}&internal=true&page=${window.location.pathname}&action=ms_leadgen`
+  const outlink = `https://out.sonary.com/track/click/?pid=${card.pid}&internal=true&page=${window.location.pathname}&action=payroll_leadgen`
   return (
     <div className={styles.cardContainer}>
       <img src={card.src} alt={card.alt} className={styles.bestMatchLogo} />
@@ -40,7 +40,7 @@ export const BrandsLayout = () => {
   return (
     <div className={styles.brandsLayoutContainer}>
       <h2 className={styles.titleSection}>
-        Are you also interested in a point of sale system?
+        Are you also interested in HR Software?
       </h2>
       <div className={styles.brandsContainer}>
         {brandsCards.map((card, index) => (
@@ -48,7 +48,7 @@ export const BrandsLayout = () => {
         ))}
       </div>
       
-        <a className={styles.compareButton} href="https://sonary.com/compare/recommended-pos/">Compare more top providers</a>
+        <a className={styles.compareButton} href="https://top-payrollservices.com/hr/">Compare more top providers</a>
   
     </div>
   );

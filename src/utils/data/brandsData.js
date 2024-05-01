@@ -1,58 +1,55 @@
-import lightspeedIcon from "../../images/thank you/lightspeed.svg"
-import toastIcon from "../../images/thank you/toast.svg";
+const BambooHR_PID = 678375
+const Justworks_PID = 679647
+
+const BambooHR_SRC =
+  "https://assets.trafficpointltd.com/app/uploads/sites/148/2022/07/31121653/bamboohr_l.svg";
+const Justworks_SRC =
+  "https://assets.trafficpointltd.com/app/uploads/sites/6/2024/03/17135228/justworks_l.svg";
 const prosIcon =
   "https://assets.sonary.com/wp-content/uploads/2024/01/18084718/Icon-Name.svg";
 const consIcon =
   "https://assets.sonary.com/wp-content/uploads/2024/01/18084759/Icon-Name-1.svg";
-  export const brandsCards = [
-    {
-      src: lightspeedIcon,
-      alt: "lightspeed Logo",
-      pid:"677451",
-      pros_cons: {
-        Pros: {
-          icon: prosIcon,
-          list: [
-            "Integrates payments, POS & eCommerce",
-            "Easy customization",
-            "Intuitive interface for simple use",
-            "Annual contract is binding",
-          ],
-        },
+export const brandsCards = [
+  {
+    src: BambooHR_SRC,
+    alt: "BambooHR Logo",
+    pid: BambooHR_PID,
+    pros_cons: {
+      Pros: {
+        icon: prosIcon,
+        list: [
+          "Flexible pay schedules",
+          "One system for employees",
+          "Handles all tax filing requirements",
+        ],
+      },
 
-        Cons: {
-          icon: consIcon,
-          list: [
-            "Certain features only in premium plans",
-            "Add-ons can ramp up the cost",
-            "You are tied in to an annual contract",
-          ],
-        },
+      Cons: {
+        icon: consIcon,
+        list: ["No expense management app"],
       },
     },
-    {
-      src: toastIcon,
-      alt: "Trusted Providers Logo",
-      pid:"675177",
-      pros_cons: {
-        Pros: {
-          icon: prosIcon,
-          list: [
-            "Streamlined back-office operations",
-            "Kitchen and service staff integrations",
-            "Multi-location menu management",
-            "Fairly priced",
-          ],
-        },
+  },
+  {
+    src: Justworks_SRC,
+    alt: "Justworks Logo",
+    pid: Justworks_PID,
+    pros_cons: {
+      Pros: {
+        icon: prosIcon,
+        list: [
+          "Straightforward pricing model",
+          "24/7 customer support",
+          "Automatic deductions for benefits",
+        ],
+      },
 
-        Cons: {
-          icon: consIcon,
-          list: [
-            "Only available on Android",
-            "Early termination fee",
-            "Not fit for large restaurants or chains",
-          ],
-        },
+      Cons: {
+        icon: consIcon,
+        list: [
+         "Base plan doesn't include time tracking"
+        ],
       },
     },
-  ];
+  },
+];

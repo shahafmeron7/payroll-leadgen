@@ -18,6 +18,7 @@
   display: flex;
   gap: 24px;
 }
+
 .cardContainer {
   display: flex;
   padding: 16px 24px 24px 24px;
@@ -27,6 +28,10 @@
   border-radius: 8px;
   border: 1px solid var(--border-border-50);
   background: #fff;
+}
+.bestMatchLogo{
+  width: 220px;
+  height: 40px;
 }
 .divider {
   width: 100%;
