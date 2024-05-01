@@ -9,7 +9,7 @@ const ThankYou = () => {
         <h1 className={styles.thankYouTitle}>Thank You!</h1>
         <p className={styles.thankYouDesc}>
           Based on the information you provided us with, we found you a
-          merchant service provider match for your needs.
+          payroll service provider match for your business.
         </p>
       </div>
     </div>

@@ -7,13 +7,13 @@ const BestMatch = () => {
   const cards = [
     {
       title: "Expert Insight",
-      info: "Utilize our expertise to quickly and easily find the merchant service provider for your business.",
+      info: "Utilize our expertise to quickly and easily find the payroll service provider for your business.",
       Logo: ExpertsLogo,
       alt: "Experts Logo",
     },
     {
       title: "Trusted Providers",
-      info: "We partner with trusted merchant service providers to ensure quality and reliability.",
+      info: "We partner with trusted payroll service providers to ensure quality and reliability.",
       Logo: TrustedProvidedLogo,
       alt: "Trusted Providers Logo",
     },

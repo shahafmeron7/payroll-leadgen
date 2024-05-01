@@ -3,8 +3,8 @@ import styles from './FAQ.module.css'
 const FAQ = () => {
   const faqItems = [
     {
-        text: "Why it is important to compare brands?",
-        details: "Comparing merchant service providers is key in finding the right one for your business needs. It ensures you get the most cost-effective and suitable option with the right features and services.",
+        text: "Why is it important to compare brands?",
+        details: "Comparing payroll service providers is key in finding the right one for your business needs. It ensures you get the most cost-effective and suitable option with the right features and services.",
     },
     {
       text: "How long does it take to hear from the provider(s) once I submit my information?",

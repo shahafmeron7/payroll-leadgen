@@ -90,7 +90,7 @@ const Questionnaire = () => {
   const QuestionnaireTitle = () => {
     return (
       <div key={currentQuestionCode} className={`animateItem animateFadeOut ${styles.titleWrapper}`}>
-      <h1 className={styles.title}>Find the right merchant service provider</h1>
+      <h1 className={styles.title}>Find the right payroll service provider</h1>
       <h3 className={styles.titleDescription}>Just a few questions to find your match</h3>
     </div>
     );
