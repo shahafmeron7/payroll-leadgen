@@ -1,5 +1,5 @@
 // src/context/questionnaire/eventHandlers.js
-import * as actionTypes from  'reducers/actionTypes';
+import * as actionTypes from "reducers/actionTypes";
 import { useCallback } from "react";
 import { validateField } from "utils/validationUtils";
 import { gsap } from "gsap";
@@ -8,9 +8,15 @@ import {
   buildEventData,
   sendImpressions,
 } from "utils/impression/impressionUtils";
+import { calculateScores } from "utils/scoring/scoring";
 const TIME_DELAY_NEXT_QUESTION = 0.2;
 
-export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => {
+export const QuestionnaireHandlers = (
+  state,
+  dispatch,
+  goToNext,
+  goToPrevious
+) => {
   const findStepNumber = (questionCode) => {
     return questionnaireData.questions.find((q) => q.code === questionCode)
       .step;
@@ -56,14 +62,13 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
         payload: newProgressBarWidth,
       });
       animateAndNavigate(() => {
-         dispatch({
-           type: actionTypes.SET_CURRENT_QUESTION_CODE,
-           payload: prevQuestionCode,
-         });
+        dispatch({
+          type: actionTypes.SET_CURRENT_QUESTION_CODE,
+          payload: prevQuestionCode,
+        });
         // goToPrevious(prevQuestionCode,newHistory);  // Now purely handles the state and history update
-
       }, newProgressBarWidth);
-      
+
       dispatch({ type: actionTypes.SET_QUESTION_HISTORY, payload: newHistory });
     }
   };
@@ -84,7 +89,6 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
       currentQuestion.type === "details-question" ||
       currentQuestion.type === "form-type"
     ) {
-
       currentQuestion.subquestions.forEach((sub) => {
         if (!validateField(sub.code, responses[sub.code]?.answer)) {
           proceedToNext = false;
@@ -145,7 +149,7 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
       animateAndNavigate(
         () => {
           // goToNext(nextQuestionCode)
-           handleNavigateNextQuestion(nextQuestionCode);
+          handleNavigateNextQuestion(nextQuestionCode);
         },
         newProgressBarWidth,
         TIME_DELAY_NEXT_QUESTION
@@ -161,9 +165,15 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
 
   const handleNavigateNextQuestion = (nextQuestionCode) => {
     if (nextQuestionCode !== "loader") {
-      dispatch({ type: actionTypes.APPEND_TO_QUESTION_HISTORY, payload: nextQuestionCode });
+      dispatch({
+        type: actionTypes.APPEND_TO_QUESTION_HISTORY,
+        payload: nextQuestionCode,
+      });
     }
-    dispatch({ type: actionTypes.SET_CURRENT_QUESTION_CODE, payload: nextQuestionCode });
+    dispatch({
+      type: actionTypes.SET_CURRENT_QUESTION_CODE,
+      payload: nextQuestionCode,
+    });
     window.history.pushState({}, null, " ");
   };
 
@@ -217,7 +227,10 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
             const answerIndex = response.answerIndexes[0]; // Since one-selection should have only one index
             if (currentQuestion.answers[answerIndex].isOther) {
               // Check if other text is not empty when 'Other' option is selected
-              isAnswered = response.other_text !== undefined && response.other_text !== null && response.other_text.trim() !== "";
+              isAnswered =
+                response.other_text !== undefined &&
+                response.other_text !== null &&
+                response.other_text.trim() !== "";
             } else {
               // Regular answer is selected
 
@@ -277,8 +290,8 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
 
       animateAndNavigate(
         () => {
-        //goToNext(nextQuestionCode)
-           handleNavigateNextQuestion(nextQuestionCode);
+          //goToNext(nextQuestionCode)
+          handleNavigateNextQuestion(nextQuestionCode);
         },
         newProgressBarWidth,
         TIME_DELAY_NEXT_QUESTION
@@ -286,7 +299,7 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
     }
   };
   const handleInputChange = (questionCode, inputValue, isOther = false) => {
-    const { currentQuestion, responses,errResponses } = state;
+    const { currentQuestion, responses, errResponses } = state;
     const currentResponse = responses[questionCode] || {
       step: currentQuestion.step,
       question:
@@ -327,73 +340,116 @@ export const QuestionnaireHandlers = (state, dispatch,goToNext,goToPrevious) => 
       type: actionTypes.CHANGE_NEXT_BTN_STATE,
       isEnabled: inputValue.trim().length > 0,
     });
-     // Check if there's an existing error and clear it
-     if (errResponses[questionCode]) {
+    // Check if there's an existing error and clear it
+    if (errResponses[questionCode]) {
       const newErrResponses = { ...errResponses };
 
-      delete newErrResponses[questionCode];  // Remove the error entry for this question
+      delete newErrResponses[questionCode]; // Remove the error entry for this question
 
       dispatch({
-          type: actionTypes.SET_ERR_RESPONSES,
-          payload: newErrResponses,
+        type: actionTypes.SET_ERR_RESPONSES,
+        payload: newErrResponses,
       });
-  }
-
+    }
   };
+  // if (targetFormID === process.env.REACT_APP_PAYSAFE_FORM_ID) {
+  //   const paysafe_monthly_volume = ["1-999", "1000-9999", "10000", "0"];
+  //   const monthly_volume = responses.monthly_volume;
+  //   monthly_volume.answer =
+  //     paysafe_monthly_volume[monthly_volume.answerIndexes[0]];
+  // }
   const completeQuestionnaire = useCallback(() => {
     const { targetFormID, responses } = state;
     let finalResponses = {};
-    Object.keys(responses).forEach(key => {
-      responses[key].users_answer = responses[key].answer;
-  });
-    if (targetFormID === process.env.REACT_APP_PAYSAFE_FORM_ID) {
-      const paysafe_monthly_volume = ["1-999", "1000-9999", "10000", "0"];
-      const monthly_volume = responses.monthly_volume;
-      monthly_volume.answer =
-        paysafe_monthly_volume[monthly_volume.answerIndexes[0]];
-    }
+    Object.entries(responses).forEach(([key, value]) => {
+      value.users_answer = value.answer;
+      //  For 'num_employees', convert the range to a single number (e.g., '2-9' becomes '2')
+      if (key === "num_employees") {
+        let answerIndex = value.answerIndexes[0];
+        value.answer = answerIndex != 0 ? value.answer.split("-")[0] : "1";
+      }
+    });
+
     finalResponses = Object.keys(responses).reduce((acc, key) => {
       const { answerIndexes, ...responseWithoutIndexes } = responses[key];
       acc[key] = responseWithoutIndexes;
       return acc;
     }, {});
-   console.log(finalResponses)
+    console.log(finalResponses);
+    const { selectedBrand, allScores } = calculateScores(finalResponses);
+    console.log("Selected Brand:", selectedBrand);
+    console.log("Scores:", allScores);
     sendImpressions(
       finalResponses,
       process.env.REACT_APP_FINAL_SUBMIT_EVENT_NAME,
       process.env.REACT_APP_STREAM_FINAL_NAME,
-      targetFormID
+      selectedBrand
     );
-    dispatch({ type: actionTypes.TOGGLE_QUESTIONNAIRE_COMPLETED, payload: true });
-  },[state.targetFormID,state.responses]);
+    dispatch({
+      type: actionTypes.TOGGLE_QUESTIONNAIRE_COMPLETED,
+      payload: true,
+    });
+  }, [state.targetFormID, state.responses]);
 
   const changeNextBtnState = (isEnabled) => {
     dispatch({ type: actionTypes.CHANGE_NEXT_BTN_STATE, isEnabled: isEnabled });
   };
 
-  
-  const checkAndUpdateFormID = (questionCode, answerIndex) => {
-    // if (questionCode === "industry_type") {
-    //   let formID =
-    //     answerIndex === 2
-    //       ? process.env.REACT_APP_STAX_FORM_ID
-    //       : Math.random() < 0.9
-    //       ? process.env.REACT_APP_PAYSAFE_FORM_ID
-    //       : process.env.REACT_APP_STAX_FORM_ID;
-    //   dispatch({ type: "SET_TARGET_FORM_ID", payload: formID });
-    // }
-    if (questionCode === "industry_type") {
-      let min=1;
-      let max=10;
-      let probability = Math.floor(Math.random() * (max - min + 1)) + min;  
-      let formID =
-        answerIndex === 2
-          ? process.env.REACT_APP_STAX_FORM_ID
-          : probability <= 8
-        ? process.env.REACT_APP_STAX_FORM_ID
-          : process.env.REACT_APP_STAX_FORM_ID
-      dispatch({ type: actionTypes.SET_TARGET_FORM_ID, payload: formID });
+  // const checkAndUpdateFormID = (questionCode, answerIndex) => {
+  //   let formID;
+  //   let probability = Math.random();
+  //   if (questionCode === "purchase_time") {
+  //     if (answerIndex === 3) {
+  //       formID =
+  //         probability <= 0.5
+  //           ? process.env.REACT_APP_PAYCHECKS_FORM_ID
+  //           : process.env.REACT_APP_ADP_FORM_ID;
+  //     } else {
+  //       formID =
+  //         probability <= 0.33
+  //           ? process.env.REACT_APP_PAYCHECKS_FORM_ID
+  //           : probability >= 0.34 && probability <= 0.66
+  //           ? process.env.REACT_APP_PAYCOR_FORM_ID
+  //           : process.env.REACT_APP_ADP_FORM_ID;
+  //     }
+  //   } else {
+  //     formID =
+  //         probability <= 0.33
+  //           ? process.env.REACT_APP_PAYCHECKS_FORM_ID
+  //           : probability >= 0.34 && probability <= 0.66
+  //           ? process.env.REACT_APP_PAYCOR_FORM_ID
+  //           : process.env.REACT_APP_ADP_FORM_ID;
+  //   }
+  //   dispatch({ type: actionTypes.SET_TARGET_FORM_ID, payload: formID });
+
+  //};
+  const assignFormID = (probability, isPurchaseTimeSpecialCase) => {
+    if (isPurchaseTimeSpecialCase) {
+      // Special case when answerIndex is 3: distribute between two brands (excluding one)
+      return probability <= 0.5
+        ? process.env.REACT_APP_PAYCHECKS_FORM_ID
+        : process.env.REACT_APP_ADP_FORM_ID;
+    } else {
+      // General case: distribute among all three brands
+      if (probability <= 0.33) {
+        return process.env.REACT_APP_PAYCHECKS_FORM_ID;
+      } else if (probability <= 0.66) {
+        return process.env.REACT_APP_PAYCOR_FORM_ID;
+      } else {
+        return process.env.REACT_APP_ADP_FORM_ID;
+      }
     }
+  };
+
+  const checkAndUpdateFormID = (questionCode, answerIndex) => {
+    const probability = Math.random();
+    const isPurchaseTimeSpecialCase =
+      questionCode === "purchase_time" && answerIndex === 3;
+    const formID = assignFormID(probability, isPurchaseTimeSpecialCase);
+    // console.log("isPurchaseTimeSpecialCase", isPurchaseTimeSpecialCase);
+    // console.log("probability", probability);
+    // console.log("formID", formID);
+    dispatch({ type: actionTypes.SET_TARGET_FORM_ID, payload: formID });
   };
 
   return {

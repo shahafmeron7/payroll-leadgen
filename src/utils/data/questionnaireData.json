@@ -1,84 +1,92 @@
 {
   "flow_id": 1,
-  "flow_name": "merchant_services",
+  "flow_name": "payroll_services",
   "questions": [
     {
-      "text": "What type of business do you have?",
-      "code": "industry_type",
+      "text": "How many employees are in your company?",
+      "code": "num_employees",
       "step": 1,
       "type": "one-selection",
       "display_list_direction": "col",
       "answers": [
         {
-          "text": "Food and Catering",
-          "next_question_code": "monthly_volume"
+          "text": "Only me",
+          "next_question_code": "purchase_time"
         },
         {
-          "text": "Retail",
-          "next_question_code": "monthly_volume"
+          "text": "2-9 Employees",
+          "next_question_code": "purchase_time"
         },
         {
-          "text": "B2B Services",
-          "next_question_code": "monthly_volume"
+          "text": "10-24 Employees",
+          "next_question_code": "purchase_time"
         },
         {
-          "text": "Health and Leisure",
-          "next_question_code": "monthly_volume"
+          "text": "25-49 Employees",
+          "next_question_code": "purchase_time"
         },
         {
-          "text": "Other",
-          "isOther":true,
-          "next_question_code": "monthly_volume"
+          "text": "50+ Employees",
+          "next_question_code": "purchase_time"
         }
       ]
     },
     {
-      "text": "What's your estimated monthly processing volume?",
-      "code": "monthly_volume",
+      "text": "When do you need your new payroll software?",
+      "code": "purchase_time",
       "step": 2,
       "type": "one-selection",
       "display_list_direction": "col",
       "answers": [
         {
-          "text": "Up to $999",
-          "next_question_code": "cc_payment_method"
+          "text": "0-3 Months",
+          "next_question_code": "solution_reason"
         },
         {
-          "text": "Between $1,000-$9,999",
-          "next_question_code": "cc_payment_method"
+          "text": "3-6 Months",
+          "next_question_code": "solution_reason"
         },
         {
-          "text": "More than $10,000",
-          "next_question_code": "cc_payment_method"
+          "text": "6-12 Months",
+          "next_question_code": "solution_reason"
         },
         {
-          "text": "Not sure",
-          "next_question_code": "cc_payment_method"
+          "text": "12+ Months",
+          "next_question_code": "solution_reason"
         }
       ]
     },
     {
-      "text": "What’s your preferred method for accepting credit card payments?",
-      "code": "cc_payment_method",
+      "text": "Why are you looking for a new payroll solution?",
+      "code": "solution_reason",
       "step": 3,
-      "type": "multi-selection",
-      "display_list_direction": "row",
-      "instructions":"Select all that apply",
+      "type": "one-selection",
+      "display_list_direction": "col",
       "answers": [
         {
-          "text": "In person",
-          "iconSrc":"https://assets.sonary.com/wp-content/uploads/2024/04/11084238/cash.svg",
+          "text": "Price",
           "next_question_code": "zip_code"
         },
         {
-          "text": "Online",
-          "iconSrc":"https://assets.sonary.com/wp-content/uploads/2024/04/11084239/creditcard.svg",
+          "text": "Customer Service",
 
           "next_question_code": "zip_code"
         },
         {
-          "text": "By phone",
-          "iconSrc":"https://assets.sonary.com/wp-content/uploads/2024/04/11084237/phone.svg",
+          "text": "Ease of Use",
+          "next_question_code": "zip_code"
+        },
+        {
+          "text": "Increase Productivity",
+          "next_question_code": "zip_code"
+        },
+        {
+          "text": "Data Accuracy",
+          "next_question_code": "zip_code"
+        },
+        {
+          "text": "Other",
+          "isOther":true,
           "next_question_code": "zip_code"
         }
       ]
