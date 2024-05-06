@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useCallback } from "react";
 import styles from "../../Questionnaire/Questionnaire.module.css";
-import { ReactComponent as PrevIcon } from "images/prevbutton.svg";
 import { useQuestionnaire } from "context/QuestionnaireContext.jsx";
 import useIsWideScreen from "hooks/useIsWideScreen";
 import { buildEventData,sendImpressions } from "utils/impression/impressionUtils";
@@ -28,11 +27,17 @@ const QuestionnaireButtons = () => {
   } = useQuestionnaire();
   const isFinalStep = currentQuestionCode === "phone";
 
-  const handleNextButtonClick = () => {
-    if(!isAnimatingOut){
+  // const handleNextButtonClick = () => {
+  //   if(!isAnimatingOut){
+  //     moveToNextQuestion();
+  //   }
+  // };
+  const handleNextButtonClick = useCallback(() => {
+    if (!isAnimatingOut) {
       moveToNextQuestion();
     }
-  };
+  }, [isAnimatingOut, moveToNextQuestion]);
+
     useEffect(() => {
       checkAndEnableNextButton();
     }, [checkAndEnableNextButton,currentQuestion, responses]);
@@ -78,7 +83,8 @@ const QuestionnaireButtons = () => {
     >
       {questionHistory.length > 1 && (
         <button className={styles.prevBtn} onClick={handlePrevClick} disabled={isAnimatingOut}>
-          <PrevIcon />
+          {/* <PrevIcon /> */}
+          <img src="https://assets.sonary.com/wp-content/uploads/2024/05/05094124/prevbutton.svg" alt="prev button icon" />
         </button>
       )}
       <button

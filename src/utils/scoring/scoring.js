@@ -4,14 +4,13 @@ function chooseRandomlyIfTied(scores, excludePaycor, brandIds) {
     const candidates = brands.filter(id => scores[id] === maxScore);
     // Choose randomly among the tied candidates
     let resultBrand = candidates[Math.floor(Math.random() * candidates.length)];
-    console.log(brands,candidates,resultBrand)
     return  resultBrand;
 }
 export function calculateScores(responseData) {
     // Map environment variables to brand IDs
     const brandIds = {
         ADP: process.env.REACT_APP_ADP_FORM_ID,
-        Paychex: process.env.REACT_APP_PAYCHECKS_FORM_ID,
+        Paychex: process.env.REACT_APP_PAYCHEX_FORM_ID,
         Paycor: process.env.REACT_APP_PAYCOR_FORM_ID
     };
 
@@ -21,12 +20,12 @@ export function calculateScores(responseData) {
         [brandIds.Paycor]: 0
     };
 
-    // Check if "12+ Months" is selected and set flag to exclude Brand A (ADP)
+    // Check if "12+ Months" is selected and set flag to exclude (PAYCOR)
     const excludePaycor = responseData['purchase_time'] && responseData['purchase_time'].answer === '12+ Months';
 
     // Define the general scoring distribution
     const generalScoring = {
-        [brandIds.Paycor]: excludePaycor ? 0 : 1, // No points to Brand A if "12+ Months" is selected
+        [brandIds.Paycor]: excludePaycor ? 0 : 1, // No points to PAYCOR if "12+ Months" is selected
         [brandIds.Paychex]: 1,
         [brandIds.ADP]: 1
     };

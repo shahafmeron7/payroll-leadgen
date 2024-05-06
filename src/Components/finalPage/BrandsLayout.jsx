@@ -1,18 +1,18 @@
 import React from "react";
 import styles from "./BrandsLayout.module.css";
 
-import { brandsCards } from "../../utils/data/brandsData";
+import { brandsCards } from "utils/data/brandsData";
 const BrandCard = ({ card }) => {
   const outlink = `https://out.sonary.com/track/click/?pid=${card.pid}&internal=true&page=${window.location.pathname}&action=payroll_leadgen`
   return (
     <div className={styles.cardContainer}>
       <img src={card.src} alt={card.alt} className={styles.bestMatchLogo} />
-        <a href={outlink} target="_blank" rel="nofollow" className={styles.cardButton}>Visit Site</a>
+        <a href={outlink} target="_blank" rel="noopener noreferrer" className={styles.cardButton}>Visit Site</a>
         
       <div className={styles.divider}></div>
       <div className={styles.pros_cons}>
         {Object.entries(card.pros_cons).map(
-          ([listName, listDetails], index) => (
+          ([listName, listDetails]) => (
             <div key={listName} className={styles.pros_cons_list_container}>
               <p className={styles.pros_cons_title}>{listName}</p>
               <div className={styles.pros_cons_list}>
@@ -22,6 +22,7 @@ const BrandCard = ({ card }) => {
                       src={listDetails.icon}
                       alt={`${listName} icon`}
                       className={styles.prosConsIcon}
+                      loading="lazy"
                     />
 
                     <p>{listItem}</p>
@@ -36,7 +37,7 @@ const BrandCard = ({ card }) => {
   );
 };
 
-export const BrandsLayout = () => {
+ const BrandsLayout = () => {
   return (
     <div className={styles.brandsLayoutContainer}>
       <h2 className={styles.titleSection}>
@@ -53,3 +54,5 @@ export const BrandsLayout = () => {
     </div>
   );
 };
+
+export default BrandsLayout;

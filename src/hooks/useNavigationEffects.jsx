@@ -1,22 +1,13 @@
 // useNavigationEffects.js
 import { useEffect } from 'react';
 import { buildEventData,sendImpressions } from '../utils/impression/impressionUtils';
-import { useQuestionnaire } from '../context/QuestionnaireContext';
 
-export const useNavigationEffects = (state,dispatch,moveToPrevQuestion) => {
+export const useNavigationEffects = (state,moveToPrevQuestion) => {
     const { questionHistory, currentQuestion,flowID,flowName, currentQuestionCode, questionnaireCompleted } = state;
-    // useEffect(() => {
-    //     // This ensures the URL and history state are correctly set for the first question when the component mounts
-    //     const currentQuestionCode = questionHistory[0]; // assuming the first element is the initial question
-      
-    //     if (window.history.state === null || window.history.state.questionCode !== currentQuestionCode) {
-    //       window.history.replaceState({ questionCode: currentQuestionCode }, "", `?question=${currentQuestionCode}`);
-    //     }
-    //   }, []); 
     
       
      useEffect(() => {
-         const handlePopState = (event) => {
+         const handlePopState = () => {
              if (questionHistory.length > 1) {
                  if (questionnaireCompleted) {
                      window.location.href = "https://sonary.com/";

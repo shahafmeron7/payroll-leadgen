@@ -28,8 +28,8 @@ export function getCookie(name) {
   let ca = document.cookie.split(";");
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
   }
   return null;
 }
@@ -61,7 +61,7 @@ export function getDomain() {
   if (matches && matches.length > 0) {
     return matches[0];
   } else {
-    return "defaultdomain.com";  // You can choose an appropriate default or error handling strategy
+    return "defaultdomain.com"; 
   }
 }
 
@@ -69,7 +69,7 @@ export function getDomain() {
 export function getToken(radix = 16) {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     let r = (Math.random() * radix) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
+      v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(radix);
   });
 }
@@ -108,7 +108,7 @@ export function updateURLParameter(url, param, paramVal) {
     tempArray = additionalURL.split("&");
 
     for (let i = 0; i < tempArray.length; i++) {
-      if (tempArray[i].split("=")[0] != param) {
+      if (tempArray[i].split("=")[0] !== param) {
         newAdditionalURL += temp + tempArray[i];
         temp = "&";
       }

@@ -26,7 +26,7 @@ export const useQuestionImpressions = (state) => {
             process.env.REACT_APP_STEP_EVENT_NAME,
             process.env.REACT_APP_STREAM_STEP_NAME
         );
-    }, [currentQuestionCode]);
+    }, [currentQuestionCode,currentQuestion,flowID,flowName]);
 };
 
 export const useUnloadImpressions = (state) => {
@@ -44,5 +44,5 @@ export const useUnloadImpressions = (state) => {
 
         window.addEventListener("beforeunload", handleUnload);
         return () => window.removeEventListener("beforeunload", handleUnload);
-    }, []);
+    },[]);
 };

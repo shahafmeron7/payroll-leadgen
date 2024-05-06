@@ -9,6 +9,7 @@ import {
   sendImpressions,
 } from "utils/impression/impressionUtils";
 import { calculateScores } from "utils/scoring/scoring";
+import { updatePaycorResponseFormat } from "utils/helperFunctions";
 const TIME_DELAY_NEXT_QUESTION = 0.2;
 
 export const QuestionnaireHandlers = (
@@ -100,7 +101,7 @@ export const QuestionnaireHandlers = (
       const response = responses[currentQuestion.code];
       if (response && response.answerIndexes) {
         const selectedIndex = response.answerIndexes[0];
-        checkAndUpdateFormID(currentQuestionCode, selectedIndex);
+        // checkAndUpdateFormID(currentQuestionCode, selectedIndex);
 
         nextQuestionCode =
           currentQuestion.answers[selectedIndex]?.next_question_code;
@@ -253,7 +254,7 @@ export const QuestionnaireHandlers = (
     const answer = currentQuestion.answers[answerIndex];
     const answerText = answer?.text;
     const existingResponse = responses[questionCode] || {};
-    checkAndUpdateFormID(questionCode, answerIndex);
+    // checkAndUpdateFormID(questionCode, answerIndex);
 
     const newResponse = {
       ...existingResponse,
@@ -352,21 +353,16 @@ export const QuestionnaireHandlers = (
       });
     }
   };
-  // if (targetFormID === process.env.REACT_APP_PAYSAFE_FORM_ID) {
-  //   const paysafe_monthly_volume = ["1-999", "1000-9999", "10000", "0"];
-  //   const monthly_volume = responses.monthly_volume;
-  //   monthly_volume.answer =
-  //     paysafe_monthly_volume[monthly_volume.answerIndexes[0]];
-  // }
+ 
   const completeQuestionnaire = useCallback(() => {
-    const { targetFormID, responses } = state;
+    const { responses } = state;
     let finalResponses = {};
     Object.entries(responses).forEach(([key, value]) => {
       value.users_answer = value.answer;
       //  For 'num_employees', convert the range to a single number (e.g., '2-9' becomes '2')
       if (key === "num_employees") {
         let answerIndex = value.answerIndexes[0];
-        value.answer = answerIndex != 0 ? value.answer.split("-")[0] : "1";
+        value.answer = answerIndex !== 0 ? value.answer.split("-")[0] : "1";
       }
     });
 
@@ -377,8 +373,13 @@ export const QuestionnaireHandlers = (
     }, {});
     console.log(finalResponses);
     const { selectedBrand, allScores } = calculateScores(finalResponses);
-    console.log("Selected Brand:", selectedBrand);
-    console.log("Scores:", allScores);
+    // console.log("Selected Brand:", selectedBrand);
+    // console.log("Scores:", allScores);
+    // let testID='9';
+    if(selectedBrand===process.env.REACT_APP_PAYCOR_FORM_ID){
+      console.log("change paycor")
+      updatePaycorResponseFormat(finalResponses)
+    }
     sendImpressions(
       finalResponses,
       process.env.REACT_APP_FINAL_SUBMIT_EVENT_NAME,
@@ -395,62 +396,9 @@ export const QuestionnaireHandlers = (
     dispatch({ type: actionTypes.CHANGE_NEXT_BTN_STATE, isEnabled: isEnabled });
   };
 
-  // const checkAndUpdateFormID = (questionCode, answerIndex) => {
-  //   let formID;
-  //   let probability = Math.random();
-  //   if (questionCode === "purchase_time") {
-  //     if (answerIndex === 3) {
-  //       formID =
-  //         probability <= 0.5
-  //           ? process.env.REACT_APP_PAYCHECKS_FORM_ID
-  //           : process.env.REACT_APP_ADP_FORM_ID;
-  //     } else {
-  //       formID =
-  //         probability <= 0.33
-  //           ? process.env.REACT_APP_PAYCHECKS_FORM_ID
-  //           : probability >= 0.34 && probability <= 0.66
-  //           ? process.env.REACT_APP_PAYCOR_FORM_ID
-  //           : process.env.REACT_APP_ADP_FORM_ID;
-  //     }
-  //   } else {
-  //     formID =
-  //         probability <= 0.33
-  //           ? process.env.REACT_APP_PAYCHECKS_FORM_ID
-  //           : probability >= 0.34 && probability <= 0.66
-  //           ? process.env.REACT_APP_PAYCOR_FORM_ID
-  //           : process.env.REACT_APP_ADP_FORM_ID;
-  //   }
-  //   dispatch({ type: actionTypes.SET_TARGET_FORM_ID, payload: formID });
 
-  //};
-  const assignFormID = (probability, isPurchaseTimeSpecialCase) => {
-    if (isPurchaseTimeSpecialCase) {
-      // Special case when answerIndex is 3: distribute between two brands (excluding one)
-      return probability <= 0.5
-        ? process.env.REACT_APP_PAYCHECKS_FORM_ID
-        : process.env.REACT_APP_ADP_FORM_ID;
-    } else {
-      // General case: distribute among all three brands
-      if (probability <= 0.33) {
-        return process.env.REACT_APP_PAYCHECKS_FORM_ID;
-      } else if (probability <= 0.66) {
-        return process.env.REACT_APP_PAYCOR_FORM_ID;
-      } else {
-        return process.env.REACT_APP_ADP_FORM_ID;
-      }
-    }
-  };
 
-  const checkAndUpdateFormID = (questionCode, answerIndex) => {
-    const probability = Math.random();
-    const isPurchaseTimeSpecialCase =
-      questionCode === "purchase_time" && answerIndex === 3;
-    const formID = assignFormID(probability, isPurchaseTimeSpecialCase);
-    // console.log("isPurchaseTimeSpecialCase", isPurchaseTimeSpecialCase);
-    // console.log("probability", probability);
-    // console.log("formID", formID);
-    dispatch({ type: actionTypes.SET_TARGET_FORM_ID, payload: formID });
-  };
+
 
   return {
     animateAndNavigate,
@@ -463,6 +411,5 @@ export const QuestionnaireHandlers = (
     handleInputChange,
     completeQuestionnaire,
     changeNextBtnState,
-    checkAndUpdateFormID,
   };
 };

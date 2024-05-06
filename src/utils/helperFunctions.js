@@ -8,6 +8,20 @@ function isValidPhone(phone) {
     phone
   );
 }
+function formatPhoneNumber(phoneNumberString) {
+  var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+  }
+  return null;
+}
+export function updatePaycorResponseFormat(finalResponses){
+  finalResponses['purchase_time'].answer += ', ' + finalResponses['solution_reason'].users_answer;
+  finalResponses['solution_reason'].answer += ', ' + finalResponses['purchase_time'].users_answer;
+  let phoneNumber = finalResponses['phone'].answer;
+  finalResponses['phone'].answer=formatPhoneNumber(phoneNumber);
+}
 export const validateField = (type, val) => {
     switch (type) {
       case "email":

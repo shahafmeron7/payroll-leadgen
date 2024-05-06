@@ -99,11 +99,14 @@ const LegalMessage = () => {
         By submitting this form, you provide us your consent to share your
         details with the&#8194;
         <u style={legalStyle} ref={popupRef}>
-          2 suppliers
+          3 suppliers
           <div style={brandBoxStyle} ref={brandsBoxRef}>
             <ul style={ulStyle}>
-              <li>PaySafe</li>
-              <li>Stax</li>
+              <li>Paycor</li>
+              <li>Paychecks</li>
+              <li>ADP</li>
+
+              {/* <li>Automatic Data Processing, Inc.</li> */}
             </ul>
           </div>
         </u>

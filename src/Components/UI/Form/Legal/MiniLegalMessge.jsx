@@ -6,7 +6,7 @@ const containerStyle = {
   position: "relative",
   color: "#99A5C5",
   maxWidth: "600px",
-  textAlign: "justify",
+  textAlign: "center",
   fontSize: "12px",
   fontStyle: "normal",
   fontWeight: "400",
@@ -15,6 +15,7 @@ const containerStyle = {
 
 const linkStyle = {
   color: "#99A5C5",
+  whiteSpace: "nowrap",
 };
 const MiniLegalMessage = () => {
   const {currentQuestionCode} = useQuestionnaire();
