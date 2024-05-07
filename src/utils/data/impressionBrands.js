@@ -4,19 +4,19 @@ const inputs = {
     2000: {
       brands: [
         {
-          brand_id: 103714,
+          brand_id: 108708,
           // id: 23788,
-          name: "ADP - Payroll",
+          name: "ADP - Sonary Lead Gen",
         },
         {
-          brand_id: 103717,
+          brand_id: 108714,
           // id: 3904,
-          name: "Paychex - Payroll",
+          name: "Paychex - Sonary Lead Gen",
         },
         {
-          brand_id: 105019,
+          brand_id: 108711,
           // id: 1373,
-          name: "Paycor - Payroll",
+          name: "Paycor - Sonary Lead Gen",
         },
 
         {

@@ -36,6 +36,7 @@ const brandBoxStyle = {
   borderBottomLeftRadius: "2px",
   bottom: "100%",
   color: "black",
+  minWidth:"213px",
   listStyleType: "none",
   fontSize: "12px",
   background: "white",
@@ -58,13 +59,18 @@ const LegalMessage = () => {
       const brandsBox = brandsBoxRef.current;
       brandsBox.style.visibility = "visible";
       brandsBox.style.opacity = "1";
-      const { width, right } = popupRef.current.getBoundingClientRect();
+      const { width, right } = brandsBoxRef.current.getBoundingClientRect();
       let windowWidth = window.innerWidth;
 
+
+   
       if (width + right >= windowWidth) {
+       
         brandsBox.style.left = "-100%";
         brandsBox.style.right = "auto";
       } else {
+        
+
         brandsBox.style.left = "100%";
         brandsBox.style.right = "auto";
       }
@@ -102,11 +108,11 @@ const LegalMessage = () => {
           3 suppliers
           <div style={brandBoxStyle} ref={brandsBoxRef}>
             <ul style={ulStyle}>
-              <li>Paycor</li>
-              <li>Paychecks</li>
-              <li>ADP</li>
+              <li>Automatic Data Processing, Inc.</li>
+              <li>Paychex, Inc.</li>
+              <li>Paycor, Inc.</li>
+              {/* <li>ADP</li> */}
 
-              {/* <li>Automatic Data Processing, Inc.</li> */}
             </ul>
           </div>
         </u>

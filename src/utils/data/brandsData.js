@@ -1,4 +1,4 @@
-const BambooHR_PID = 678375
+const BambooHR_PID = 679050
 const Justworks_PID = 679647
 
 const BambooHR_SRC =

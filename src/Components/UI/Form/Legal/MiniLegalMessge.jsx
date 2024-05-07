@@ -27,7 +27,7 @@ const MiniLegalMessage = () => {
         className="animateStaggerItem animateFadeOut"
         style={containerStyle}
       >
-        your information will be handled as detailed in our&#8194;
+        Your information will be handled as detailed in our&#8194;
         <a
           style={linkStyle}
           href="https://sonary.com/privacy-policy/"
