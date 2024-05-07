@@ -1,15 +1,15 @@
 // src/context/questionnaire/eventHandlers.js
-import * as actionTypes from "reducers/actionTypes";
+import * as actionTypes from "./../../reducers/actionTypes.js"
 import { useCallback } from "react";
-import { validateField } from "utils/validationUtils";
+import { validateField } from "@/utils/validationUtils";
 import { gsap } from "gsap";
-import questionnaireData from "utils/data/questionnaireData.json";
+import questionnaireData from "@/utils/data/questionnaireData.json";
 import {
   buildEventData,
   sendImpressions,
-} from "utils/impression/impressionUtils";
-import { calculateScores } from "utils/scoring/scoring";
-import { updatePaycorResponseFormat } from "utils/helperFunctions";
+} from "@/utils/impression/impressionUtils";
+import { calculateScores } from "@/utils/scoring/scoring";
+import { updatePaycorResponseFormat } from "@/utils/helperFunctions";
 const TIME_DELAY_NEXT_QUESTION = 0.2;
 
 export const QuestionnaireHandlers = (
@@ -128,12 +128,12 @@ export const QuestionnaireHandlers = (
         currentQuestion,
         flowID,
         flowName,
-        process.env.REACT_APP_USER_ACTION_CLICK_NEXT
+        import.meta.env.REACT_APP_USER_ACTION_CLICK_NEXT
       );
       sendImpressions(
         eventData,
-        process.env.REACT_APP_USER_EVENT_NAME,
-        process.env.REACT_APP_STREAM_STEP_NAME
+        import.meta.env.REACT_APP_USER_EVENT_NAME,
+        import.meta.env.REACT_APP_STREAM_STEP_NAME
       );
       dispatch({ type: actionTypes.CHANGE_NEXT_BTN_STATE, isEnabled: true });
 
@@ -376,14 +376,14 @@ export const QuestionnaireHandlers = (
     // console.log("Selected Brand:", selectedBrand);
     // console.log("Scores:", allScores);
     // let testID='9';
-    if(selectedBrand===process.env.REACT_APP_PAYCOR_FORM_ID){
+    if(selectedBrand===import.meta.env.REACT_APP_PAYCOR_FORM_ID){
       console.log("change paycor")
       updatePaycorResponseFormat(finalResponses)
     }
     sendImpressions(
       finalResponses,
-      process.env.REACT_APP_FINAL_SUBMIT_EVENT_NAME,
-      process.env.REACT_APP_STREAM_FINAL_NAME,
+      import.meta.env.REACT_APP_FINAL_SUBMIT_EVENT_NAME,
+      import.meta.env.REACT_APP_STREAM_FINAL_NAME,
       selectedBrand
     );
     dispatch({

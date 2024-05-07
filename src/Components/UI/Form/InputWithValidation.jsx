@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./InputWithValidation.module.css";
-import { useQuestionnaire } from "context/QuestionnaireContext.jsx";
+import { useQuestionnaire } from "@/context/QuestionnaireContext.jsx";
 import gsap from "gsap";
 
 const InputWithValidation = React.forwardRef(

@@ -1,11 +1,11 @@
 import React, { useEffect,useCallback } from "react";
 import styles from "../../Questionnaire/Questionnaire.module.css";
-import { useQuestionnaire } from "context/QuestionnaireContext.jsx";
-import useIsWideScreen from "hooks/useIsWideScreen";
-import { buildEventData,sendImpressions } from "utils/impression/impressionUtils";
-const USER_ACTION_CLICK_PREV = process.env.REACT_APP_USER_ACTION_CLICK_PREV;
-const STREAM_STEP_NAME = process.env.REACT_APP_STREAM_STEP_NAME;
-const USER_EVENT_NAME = process.env.REACT_APP_USER_EVENT_NAME;
+import { useQuestionnaire } from "@/context/QuestionnaireContext.jsx";
+import useIsWideScreen from "@/hooks/useIsWideScreen";
+import { buildEventData,sendImpressions } from "@/utils/impression/impressionUtils";
+const USER_ACTION_CLICK_PREV = import.meta.env.REACT_APP_USER_ACTION_CLICK_PREV;
+const STREAM_STEP_NAME = import.meta.env.REACT_APP_STREAM_STEP_NAME;
+const USER_EVENT_NAME = import.meta.env.REACT_APP_USER_EVENT_NAME;
 
 const QuestionnaireButtons = () => {
   const isWideScreen = useIsWideScreen();

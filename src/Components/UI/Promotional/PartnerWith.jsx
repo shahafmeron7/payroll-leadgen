@@ -1,8 +1,8 @@
 import React from "react";
-import { useQuestionnaire } from "context/QuestionnaireContext.jsx";
+import { useQuestionnaire } from "@/context/QuestionnaireContext.jsx";
 import styles from './PartnerWith.module.css';
-import useIsWideScreen from "hooks/useIsWideScreen";
-import { partnerBrands}  from "utils/data/partnerWithBrands";
+import useIsWideScreen from "@/hooks/useIsWideScreen";
+import { partnerBrands}  from "@/utils/data/partnerWithBrands";
 const PartnerWith = () => {
 
 

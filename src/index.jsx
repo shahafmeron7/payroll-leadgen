@@ -5,8 +5,8 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 import "./index.css";
 import App from "./App/App.jsx";
- import { QuestionnaireProvider } from "./context/QuestionnaireProvider.jsx";  // This path assumes your export setup in the context questionnaire index.js
- if (process.env.NODE_ENV === 'production') {
+ import { QuestionnaireProvider } from "./context/QuestionnaireProvider.jsx";
+ if (import.meta.env.NODE_ENV === 'production') {
   console.log('disabled devtool')
   disableReactDevTools();
 }

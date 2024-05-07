@@ -2,21 +2,21 @@ import React, { useEffect, useState, useRef } from "react";
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-import QuestionnaireLayout from "layouts/QuestionnaireLayout";
-import { useQuestionnaire } from "context/QuestionnaireContext";
-import ProgressBar from "components/UI/ProgressBar";
- import AnswersContent from "components/Questionnaire/types/AnswersContent";
+import QuestionnaireLayout from "@/layouts/QuestionnaireLayout";
+import { useQuestionnaire } from "@/context/QuestionnaireContext";
+import ProgressBar from "@/components/UI/ProgressBar";
+ import AnswersContent from "@/components/Questionnaire/types/AnswersContent";
 
-import Loader from "components/Questionnaire/types/Loader";
-import QuestionnaireWrapper from "layouts/QuestionnaireWrapper";
-import FormProgress from "components/UI/Form/FormProgress";
-import StarsHero from "components/UI/StarsHero";
-import ExtraInfo from "components/UI/Promotional/ExtraInfo";
-import LegalMessage from "components/UI/Form/Legal/LegalMessage";
-import MiniLegalMessage from "components/UI/Form/Legal/MiniLegalMessge";
-import FormIcons from "components/UI/Form/FormIcons";
-import QuestionnaireButtons from "components/UI/Form/QuestionnaireButtons";
-import SSLIcon from "components/UI/Form/SSLIcon";
+import Loader from "@/components/Questionnaire/types/Loader";
+import QuestionnaireWrapper from "@/layouts/QuestionnaireWrapper";
+import FormProgress from "@/components/UI/Form/FormProgress";
+import StarsHero from "@/components/UI/StarsHero";
+import ExtraInfo from "@/components/UI/Promotional/ExtraInfo";
+import LegalMessage from "@/components/UI/Form/Legal/LegalMessage";
+import MiniLegalMessage from "@/components/UI/Form/Legal/MiniLegalMessge";
+import FormIcons from "@/components/UI/Form/FormIcons";
+import QuestionnaireButtons from "@/components/UI/Form/QuestionnaireButtons";
+import SSLIcon from "@/components/UI/Form/SSLIcon";
 
 import styles from "./Questionnaire.module.css";
 

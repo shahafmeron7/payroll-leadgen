@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './WhatsNext.module.css'
-import { cards } from 'utils/data/whatNextCards'
+import { cards } from '@/utils/data/whatNextCards'
 const WhatsNext = () => {
     
       const Card = ({ card }) => {

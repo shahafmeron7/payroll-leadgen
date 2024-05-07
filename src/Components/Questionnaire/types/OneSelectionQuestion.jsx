@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 // import { useQuestionnaire } from "../../../context/QuestionnaireContext";
-import { useQuestionnaire } from "context/QuestionnaireContext.jsx";
+import { useQuestionnaire } from "@/context/QuestionnaireContext.jsx";
 import styles from "./AnswersContent.module.css";
-import { ReactComponent as UnselectedCheckboxSVG } from "images/unselectedCircleCheckbox.svg";
-import { ReactComponent as SelectedCheckboxSVG } from "images/selectedCircleCheckbox.svg";
-// import selectedCheckboxSVG from 'https://assets.sonary.com/wp-content/uploads/2024/05/05094126/selectedCircleCheckbox.svg'
-// import unselectedCheckboxSVG from 'https://assets.sonary.com/wp-content/uploads/2024/05/05094130/unselectedCircleCheckbox.svg'
+import  UnselectedCheckboxSVG  from "@/images/unselectedCircleCheckbox.svg";
+import  SelectedCheckboxSVG  from "@/images/selectedCircleCheckbox.svg";
+// import selectedCheckboxSVG from 'https://assets.sonary.com/wp-content/uploads/2024/05/05094126/selectedCircleCheckbox.svg"
+// import unselectedCheckboxSVG from 'https://assets.sonary.com/wp-content/uploads/2024/05/05094130/unselectedCircleCheckbox.svg"
 import InputWithValidation from "../../UI/Form/InputWithValidation.jsx";
 
 const OneSelectionQuestion = () => {

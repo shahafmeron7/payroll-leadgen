@@ -1,6 +1,6 @@
-import phoneIcon from 'images/thank you/phone.svg'
-import discussionIcon from 'images/thank you/discussion.svg'
-import handsIcon from 'images/thank you/hands.svg'
+import phoneIcon from "@/images/thank you/phone.svg?url"
+import discussionIcon from "@/images/thank you/discussion.svg?url"
+import handsIcon from "@/images/thank you/hands.svg?url"
 export const cards = [
     {
       title: "Wait for a call from the relevant provider(s)",
