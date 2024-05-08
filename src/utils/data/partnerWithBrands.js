@@ -20,11 +20,11 @@ export const partnerBrands = [
     alt: "Netsuite Logo",
   },
   {
-    src: "https://assets.trafficpointltd.com/app/uploads/sites/148/2020/12/10120256/onpay_l_medium.svg",
+    src: "https://assets.sonary.com/wp-content/uploads/2024/05/08113648/onpay_l_medium-01.svg",
     alt: "Onpay Logo",
   },
   {
-    src: "https://assets.trafficpointltd.com/app/uploads/sites/6/2024/03/17135228/justworks_l.svg",
+    src: "https://assets.sonary.com/wp-content/uploads/2024/05/08113650/justworks_l_medium-01.svg",
     alt: "Justworks Logo",
   },
 ];

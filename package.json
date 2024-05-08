@@ -21,7 +21,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "preview": "vite preview --port 8080"
+
   },
   "eslintConfig": {
     "extends": [

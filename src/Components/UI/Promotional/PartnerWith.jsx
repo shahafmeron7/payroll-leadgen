@@ -23,7 +23,10 @@ const PartnerWith = () => {
         <div className={styles.partnerWithDivider}></div>
         <div className={styles.partnerWithBrandsContainer}>
           {partnerBrands.map((logo, index) => (
-              <img key={index} className={styles.partnerWithLogo} src={logo.src} alt={logo.alt} loading="lazy" />
+            <div key={logo.alt} className={styles.partnerWithLogoContainer} >
+              <img height="30" width="100" className={styles.partnerWithLogo} src={logo.src} alt={logo.alt} loading="lazy" />
+
+            </div>
           ))}
         </div>
       </div>

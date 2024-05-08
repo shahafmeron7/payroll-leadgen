@@ -10,11 +10,11 @@ const Navbar = () => {
 
     <nav className={styles.navbar}>
       <div>
-      <img src={logo} alt="Logo"  />
+      <img src={logo} alt="Logo" width="113" height="32" />
         </div>
       <div className={styles.logosWrapper}>
-      <img src={trustPilotLogo} alt="Logo"  />
-      <img src={fiveStartsLogo} alt="Logo"  />
+      <img src={trustPilotLogo} alt="Logo" width="141" height="34" />
+      <img src={fiveStartsLogo} alt="Logo" width="149" height="28"/>
         
          </div>
     </nav>

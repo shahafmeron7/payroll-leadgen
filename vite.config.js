@@ -11,7 +11,13 @@ export default defineConfig({
   // comment this out if that isn't relevant for your project
   build: {
     outDir: "build",
-    sourcemap: false
+    sourcemap: false,
+    minify : true,
+    cssMinify : true,
+    reportCompressedSize:true
+  },
+  server:{
+    open:true
   },
   plugins: [
     react(),

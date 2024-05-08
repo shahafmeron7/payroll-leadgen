@@ -4,7 +4,7 @@ const Justworks_PID = 679647
 const BambooHR_SRC =
   "https://assets.trafficpointltd.com/app/uploads/sites/148/2022/07/31121653/bamboohr_l.svg";
 const Justworks_SRC =
-  "https://assets.trafficpointltd.com/app/uploads/sites/6/2024/03/17135228/justworks_l.svg";
+  "https://assets.sonary.com/wp-content/uploads/2024/05/08113650/justworks_l_medium-01.svg";
 const prosIcon =
   "https://assets.sonary.com/wp-content/uploads/2024/01/18084718/Icon-Name.svg";
 const consIcon =

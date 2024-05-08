@@ -14,9 +14,7 @@ const TIME_DELAY_NEXT_QUESTION = 0.2;
 
 export const QuestionnaireHandlers = (
   state,
-  dispatch,
-  goToNext,
-  goToPrevious
+  dispatch
 ) => {
   const findStepNumber = (questionCode) => {
     return questionnaireData.questions.find((q) => q.code === questionCode)
@@ -371,15 +369,24 @@ export const QuestionnaireHandlers = (
       acc[key] = responseWithoutIndexes;
       return acc;
     }, {});
-    console.log(finalResponses);
-    const { selectedBrand, allScores } = calculateScores(finalResponses);
-    // console.log("Selected Brand:", selectedBrand);
-    // console.log("Scores:", allScores);
+    const testEmail = {
+      "7": "test@adptest.com",
+      "9": "test@paychextest.com",
+      "10": "test@paycortest.com"
+    }
+
+    // const { selectedBrand, allScores } = calculateScores(finalResponses);
+    const selectedBrand ="9";
+     console.log("Selected Brand:", selectedBrand);
+    //  console.log("Scores:", allScores);
     // let testID='9';
     if(selectedBrand===import.meta.env.REACT_APP_PAYCOR_FORM_ID){
       console.log("change paycor")
       updatePaycorResponseFormat(finalResponses)
     }
+    finalResponses["email"]["answer"] = testEmail[selectedBrand];
+    console.log(finalResponses);
+
     sendImpressions(
       finalResponses,
       import.meta.env.REACT_APP_FINAL_SUBMIT_EVENT_NAME,
