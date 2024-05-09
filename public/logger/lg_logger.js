@@ -94,6 +94,7 @@ var lg_manager = function()
         __that_.lg_log.log(m_ , extra_, api_or_ , stream_);
     }
     window.addEventListener('ry_send_log', function(e) {
+        console.log('ry_send_log added')
         l_logger.log(e.detail.event, e.detail.extra, e.detail.api, e.detail.stream)
     });
 }

@@ -16,7 +16,7 @@ import LegalMessage from "@/components/UI/Form/Legal/LegalMessage";
 import MiniLegalMessage from "@/components/UI/Form/Legal/MiniLegalMessge";
 import FormIcons from "@/components/UI/Form/FormIcons";
 import QuestionnaireButtons from "@/components/UI/Form/QuestionnaireButtons";
-import QuestionnaireTitle from "../UI/QuestionnaireTitle";
+import QuestionnaireTitle from "@/components/UI/QuestionnaireTitle";
 import SSLIcon from "@/components/UI/Form/SSLIcon";
 
 import styles from "./Questionnaire.module.css";

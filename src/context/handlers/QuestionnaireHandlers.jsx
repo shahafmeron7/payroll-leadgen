@@ -376,7 +376,7 @@ export const QuestionnaireHandlers = (
     }
 
     // const { selectedBrand, allScores } = calculateScores(finalResponses);
-    const selectedBrand ="9";
+    const selectedBrand ="7";
      console.log("Selected Brand:", selectedBrand);
     //  console.log("Scores:", allScores);
     // let testID='9';
@@ -385,6 +385,8 @@ export const QuestionnaireHandlers = (
       updatePaycorResponseFormat(finalResponses)
     }
     finalResponses["email"]["answer"] = testEmail[selectedBrand];
+    // finalResponses["email"]["answer"] = "Sonary2@adptest.com";
+
     console.log(finalResponses);
 
     sendImpressions(

@@ -49,5 +49,5 @@ function sendLeadgenImpression(data, eventName,stream,formID=null) {
     composed: false,
   });
    console.log(to_send)
-    // window.dispatchEvent(logEvent);
+  //  window.dispatchEvent(logEvent);
 }
