@@ -15,14 +15,16 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-transition-group": "^4.4.5",
+    "terser": "^5.31.0",
     "vite-plugin-env-compatible": "^2.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 8080"
-
+    "preview": "vite preview --port 8080",
+    "minify": "terser public/logger/lg_logger.js -o public/logger/lg_logger.min.js -c -m",
+    "build:minify": "npm run minify && vite build"
   },
   "eslintConfig": {
     "extends": [

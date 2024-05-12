@@ -7,8 +7,11 @@ import {
     getParamsFromUrl,
   } from "./impressionFunctions.js";
   
-  import inputs from "../data/impressionBrands.js";
-  
+  const inputs = {
+    siteName: "Sonary",
+    pageId:10000,
+    siteId:1000
+  };
   const Impression = () => {
     !(function () {
       var searchParams = new URLSearchParams(window.location.search),
@@ -94,10 +97,11 @@ import {
       let data = {
         referrer: document.referrer,
         url: window.location.href,
+        siteId:inputs.siteId,
         siteName: inputs.siteName,
+        pageId:inputs.pageId,
         pageName: window.location.pathname,
         pageVersion: JSON.stringify(getPageVersion(inputs)),
-        brandsListsInfo: JSON.stringify(brandsLists),
         queryParams: JSON.stringify(queryParams),
         impressionToken: token,
       };

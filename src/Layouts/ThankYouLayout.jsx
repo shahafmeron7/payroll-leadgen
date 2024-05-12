@@ -6,7 +6,7 @@ import ThankYou from "@/components/finalPage/ThankYou";
 const PartnerWith =React.lazy(() => import("@/components//UI/Promotional/PartnerWith"));
 const WhatsNext = React.lazy(() => import("@/components//finalPage/WhatsNext"));
 const BrandsLayout = React.lazy(() =>
-  import("@/components//finalPage/BrandsLayout")
+  import("@/components/finalPage/BrandsLayout")
 );
 const HearBack = React.lazy(() => import("@/components//finalPage/HearBack"));
 

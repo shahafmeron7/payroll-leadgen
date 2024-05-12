@@ -16,12 +16,31 @@ function formatPhoneNumber(phoneNumberString) {
   }
   return null;
 }
-export function updatePaycorResponseFormat(finalResponses){
-  finalResponses['purchase_time'].answer += ', ' + finalResponses['solution_reason'].users_answer;
-  finalResponses['solution_reason'].answer += ', ' + finalResponses['purchase_time'].users_answer;
-  let phoneNumber = finalResponses['phone'].answer;
+export function updatePaycorResponseFormat(finalResponses) {
+  // // Helper function to format answer with potential 'other_text'
+  // function formatAnswer(questionCode) {
+  //   let baseAnswer = questionCode.question + ' ' + questionCode.users_answer;
+  //   // Append 'other_text' to the answer if 'users_answer' is "Other" and 'other_text' exists
+  //   if (questionCode.other_text) {
+  //     baseAnswer += ' : ' + questionCode.other_text;
+  //   }
+  //   return baseAnswer;
+  // }
+
+  // // Concatenate the formatted answers for 'purchase_time'
+  // finalResponses['purchase_time'].answer = 
+  //   formatAnswer(finalResponses['purchase_time']) + ', ' + 
+  //   formatAnswer(finalResponses['solution_reason']);
+
+  // // Concatenate the formatted answers for 'solution_reason' similarly
+  // finalResponses['solution_reason'].answer = 
+  //   formatAnswer(finalResponses['purchase_time']) + ', ' + 
+  //   formatAnswer(finalResponses['solution_reason']);
+
+    let phoneNumber = finalResponses['phone'].answer;
   finalResponses['phone'].answer=formatPhoneNumber(phoneNumber);
 }
+
 export const validateField = (type, val) => {
     switch (type) {
       case "email":
@@ -61,6 +80,6 @@ export const validateField = (type, val) => {
       composed: false,
     });
     // console.log(to_send)
-     window.dispatchEvent(logEvent);
+    //  window.dispatchEvent(logEvent);
   }
   

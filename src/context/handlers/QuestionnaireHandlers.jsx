@@ -371,12 +371,12 @@ export const QuestionnaireHandlers = (
     }, {});
     const testEmail = {
       "7": "test@adptest.com",
-      "9": "test@paychextest.com",
+      "9": "12MAY_Test_1@paychextest.com",
       "10": "test@paycortest.com"
     }
 
     // const { selectedBrand, allScores } = calculateScores(finalResponses);
-    const selectedBrand ="7";
+    const selectedBrand ="10";
      console.log("Selected Brand:", selectedBrand);
     //  console.log("Scores:", allScores);
     // let testID='9';
@@ -385,7 +385,7 @@ export const QuestionnaireHandlers = (
       updatePaycorResponseFormat(finalResponses)
     }
     finalResponses["email"]["answer"] = testEmail[selectedBrand];
-    // finalResponses["email"]["answer"] = "Sonary2@adptest.com";
+    //  finalResponses["email"]["answer"] = "sonary3@adptest.com";
 
     console.log(finalResponses);
 

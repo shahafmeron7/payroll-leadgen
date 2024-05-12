@@ -1,7 +1,6 @@
 import React from "react";
 
 import SSLLogo  from "@/images/ssl_lock.svg"
-// import SSLLogo from 'https://assets.sonary.com/wp-content/uploads/2024/05/05094127/ssl_lock.svg"
 import { useQuestionnaire } from "@/context/QuestionnaireContext";
 const SSLIcon = () => {
     const stylesslWrapper = {
@@ -27,7 +26,6 @@ const SSLIcon = () => {
           style={stylesslWrapper}
         >
           <SSLLogo/>
-          {/* <img src={SSLLogo} alt="SSL Icon" loading="lazy" /> */}
           <p style={psslWrapper}>SSL Encrypted</p>
         </div>
      
