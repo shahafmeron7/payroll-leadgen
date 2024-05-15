@@ -64,7 +64,7 @@ export const validateField = (type, val) => {
     
   }
 
-  export function sendLeadgenImpression(data, eventName,stream,formID=null) {
+  function sendLeadgenImpression(data, eventName,stream,formID=null) {
     var to_send = {
       extra: {
         extra_data: data,
@@ -80,6 +80,6 @@ export const validateField = (type, val) => {
       composed: false,
     });
     // console.log(to_send)
-    //  window.dispatchEvent(logEvent);
+      window.dispatchEvent(logEvent);
   }
   

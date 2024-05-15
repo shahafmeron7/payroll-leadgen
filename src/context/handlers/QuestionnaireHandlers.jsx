@@ -360,7 +360,7 @@ export const QuestionnaireHandlers = (
       //  For 'num_employees', convert the range to a single number (e.g., '2-9' becomes '2')
       if (key === "num_employees") {
         let answerIndex = value.answerIndexes[0];
-        value.answer = answerIndex !== 0 ? value.answer.split("-")[0] : "1";
+        value.answer = answerIndex !== 0 ? value.answer.split(/[-+]/)[0] : "1";
       }
     });
 
@@ -371,12 +371,12 @@ export const QuestionnaireHandlers = (
     }, {});
     const testEmail = {
       "7": "test@adptest.com",
-      "9": "12MAY_Test_1@paychextest.com",
+      "9": "15MAY_Test_2@paychextest.com",
       "10": "test@paycortest.com"
     }
 
     // const { selectedBrand, allScores } = calculateScores(finalResponses);
-    const selectedBrand ="10";
+    const selectedBrand ="9";
      console.log("Selected Brand:", selectedBrand);
     //  console.log("Scores:", allScores);
     // let testID='9';
@@ -384,8 +384,8 @@ export const QuestionnaireHandlers = (
       console.log("change paycor")
       updatePaycorResponseFormat(finalResponses)
     }
-    finalResponses["email"]["answer"] = testEmail[selectedBrand];
-    //  finalResponses["email"]["answer"] = "sonary3@adptest.com";
+     finalResponses["email"]["answer"] = testEmail[selectedBrand];
+      // finalResponses["email"]["answer"] = "sonary3@adptest.com";
 
     console.log(finalResponses);
 
