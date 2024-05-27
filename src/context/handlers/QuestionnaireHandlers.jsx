@@ -369,25 +369,26 @@ export const QuestionnaireHandlers = (
       acc[key] = responseWithoutIndexes;
       return acc;
     }, {});
-    const testEmail = {
-      "7": "test@adptest.com",
-      "9": "15MAY_Test_2@paychextest.com",
-      "10": "test@paycortest.com"
-    }
+    // const testEmail = {
+    //   "7": "test@adptest.com",
+    //   "9": "RyzeFinalTest@paychextest.com",
+    //   "10": "test@paycortest.com"
+    // }
 
-    // const { selectedBrand, allScores } = calculateScores(finalResponses);
-    const selectedBrand ="9";
-     console.log("Selected Brand:", selectedBrand);
+    const { selectedBrand, allScores } = calculateScores(finalResponses);
+    // const selectedBrand ="9";
+    //  console.log("Selected Brand:", selectedBrand);
+    //  console.log("allScores",allScores);
     //  console.log("Scores:", allScores);
     // let testID='9';
     if(selectedBrand===import.meta.env.REACT_APP_PAYCOR_FORM_ID){
-      console.log("change paycor")
+      // console.log("change paycor")
       updatePaycorResponseFormat(finalResponses)
     }
-     finalResponses["email"]["answer"] = testEmail[selectedBrand];
+    //  finalResponses["email"]["answer"] = testEmail[selectedBrand];
       // finalResponses["email"]["answer"] = "sonary3@adptest.com";
 
-    console.log(finalResponses);
+    // console.log(finalResponses);
 
     sendImpressions(
       finalResponses,

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 
-// import { useQuestionnaire } from "../../context/QuestionnaireContext";
 import { useQuestionnaire } from "../../../../context/QuestionnaireContext.jsx";
 
 const legalStyle = {
@@ -105,10 +104,10 @@ const LegalMessage = () => {
         By submitting this form, you provide us your consent to share your
         details with the&#8194;
         <u style={legalStyle} ref={popupRef}>
-          3 suppliers
+          2 suppliers
           <div style={brandBoxStyle} ref={brandsBoxRef}>
             <ul style={ulStyle}>
-              <li>Automatic Data Processing, Inc.</li>
+              {/* <li>Automatic Data Processing, Inc.</li> */}
               <li>Paychex, Inc.</li>
               <li>Paycor, Inc.</li>
               {/* <li>ADP</li> */}
