@@ -6,7 +6,9 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import "./index.css";
 import App from "./App/App.jsx";
  import { QuestionnaireProvider } from "./context/QuestionnaireProvider.jsx";
- if (import.meta.env.NODE_ENV === 'production') {
+ import { OsanoVisibilityProvider } from "./context/OsanoVisibilityContext";
+
+ if (import.meta.env.PROD) {
   console.log('disabled devtool')
   disableReactDevTools();
 }
@@ -16,7 +18,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <QuestionnaireProvider>
-        <App />
+      <OsanoVisibilityProvider>
+          <App />
+        </OsanoVisibilityProvider>
       </QuestionnaireProvider>
     </BrowserRouter>
   </React.StrictMode>

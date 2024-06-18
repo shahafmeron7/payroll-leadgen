@@ -20,6 +20,9 @@ import QuestionnaireTitle from "@/components/UI/QuestionnaireTitle";
 import SSLIcon from "@/components/UI/Form/SSLIcon";
 
 import styles from "./Questionnaire.module.css";
+import useIsWideScreen from "@/hooks/useIsWideScreen";
+import { useContext } from "react";
+import OsanoVisibilityContext from "@/context/OsanoVisibilityContext";
 
 const Questionnaire = () => {
 
@@ -28,6 +31,8 @@ const Questionnaire = () => {
     currentQuestionCode,
     questionnaireStarted,
   } = useQuestionnaire();
+  const {osanoShown} = useContext(OsanoVisibilityContext);
+  const isWideScreen = useIsWideScreen();
   const showLoader = useLoader();
   const layoutRef = useAnimations();
 
@@ -37,7 +42,9 @@ const Questionnaire = () => {
   const isZipCodeStep = currentQuestionCode === "zip_code";
   const isPersonalInfoStep = currentQuestionCode ==='personal_and_business_info'
   const isEmailStep = currentQuestionCode === "email";
-
+  const mobileStyle = {
+    paddingBottom: osanoShown ? "170px":"88px", 
+  }
 
   if (showLoader) {
     return (
@@ -73,7 +80,7 @@ const Questionnaire = () => {
             )}
           </div>
         )}
-        <div className={styles.contentWrapper}>
+        <div className={styles.contentWrapper} style={questionnaireStarted&& !isWideScreen ? mobileStyle : {}}>
           <AnswersContent  />
 
           {(isFinalStep || isZipCodeStep) && <ExtraInfo />}

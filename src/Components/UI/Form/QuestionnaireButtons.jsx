@@ -1,14 +1,19 @@
-import React, { useEffect,useCallback } from "react";
+import React, { useEffect,useCallback,useContext } from "react";
 import styles from "../../Questionnaire/Questionnaire.module.css";
 import { useQuestionnaire } from "@/context/QuestionnaireContext.jsx";
 import useIsWideScreen from "@/hooks/useIsWideScreen";
 import { buildEventData,sendImpressions } from "@/utils/impression/impressionUtils";
+
+import OsanoVisibilityContext from "@/context/OsanoVisibilityContext";
+
+
 const USER_ACTION_CLICK_PREV = import.meta.env.REACT_APP_USER_ACTION_CLICK_PREV;
 const STREAM_STEP_NAME = import.meta.env.REACT_APP_STREAM_STEP_NAME;
 const USER_EVENT_NAME = import.meta.env.REACT_APP_USER_EVENT_NAME;
 
 const QuestionnaireButtons = () => {
   const isWideScreen = useIsWideScreen();
+  const { osanoShown } = useContext(OsanoVisibilityContext);
 
   const {
     questionHistory,
@@ -27,11 +32,6 @@ const QuestionnaireButtons = () => {
   } = useQuestionnaire();
   const isFinalStep = currentQuestionCode === "phone";
 
-  // const handleNextButtonClick = () => {
-  //   if(!isAnimatingOut){
-  //     moveToNextQuestion();
-  //   }
-  // };
   const handleNextButtonClick = useCallback(() => {
     if (!isAnimatingOut) {
       moveToNextQuestion();
@@ -70,7 +70,7 @@ const QuestionnaireButtons = () => {
 
   const mobileButtonsStyle = {
     position: "fixed",
-    bottom: "0",
+    bottom: (osanoShown && questionnaireStarted && !isWideScreen) ? '88px' : '0px',
     width: "100%",
     backgroundColor: "#fff",
     padding: "16px",
