@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import questionnaireData from "../utils/data/questionnaireData.json";
+import questionnaireData from "../utils/data/questionnaireData.js";
 export const initialState = () => {
   const initialQuestionCode = questionnaireData.questions[0]?.code;
   const currentQuestion = questionnaireData.questions.find(

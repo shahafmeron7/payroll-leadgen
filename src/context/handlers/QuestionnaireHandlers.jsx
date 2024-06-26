@@ -3,13 +3,17 @@ import * as actionTypes from "./../../reducers/actionTypes.js"
 import { useCallback } from "react";
 import { validateField } from "@/utils/validationUtils";
 import { gsap } from "gsap";
-import questionnaireData from "@/utils/data/questionnaireData.json";
+import questionnaireData from "@/utils/data/questionnaireData.js";
 import {
   buildEventData,
   sendImpressions,
 } from "@/utils/impression/impressionUtils";
-import { calculateScores } from "@/utils/scoring/scoring";
+
+import { chooseBrand } from "@/utils/scoring/newScoring.js";
+
 import { updatePaycorResponseFormat } from "@/utils/helperFunctions";
+import env from "@/utils/data/env";
+
 const TIME_DELAY_NEXT_QUESTION = 0.2;
 
 export const QuestionnaireHandlers = (
@@ -126,12 +130,12 @@ export const QuestionnaireHandlers = (
         currentQuestion,
         flowID,
         flowName,
-        import.meta.env.REACT_APP_USER_ACTION_CLICK_NEXT
+        env.USER_ACTION_CLICK_NEXT
       );
       sendImpressions(
         eventData,
-        import.meta.env.REACT_APP_USER_EVENT_NAME,
-        import.meta.env.REACT_APP_STREAM_STEP_NAME
+        env.USER_EVENT_NAME,
+        env.STREAM_STEP_NAME
       );
       dispatch({ type: actionTypes.CHANGE_NEXT_BTN_STATE, isEnabled: true });
 
@@ -363,7 +367,8 @@ export const QuestionnaireHandlers = (
         value.answer = answerIndex !== 0 ? value.answer.split(/[-+]/)[0] : "1";
       }
     });
-
+    const selectedBrand = chooseBrand(responses);
+    // console.log("selectedBrand",selectedBrand)
     finalResponses = Object.keys(responses).reduce((acc, key) => {
       const { answerIndexes, ...responseWithoutIndexes } = responses[key];
       acc[key] = responseWithoutIndexes;
@@ -374,17 +379,17 @@ export const QuestionnaireHandlers = (
     //   "9": "RyzeFinalTest@paychextest.com",
     //   "10": "test@paycortest.com"
     // }
-
-    const { selectedBrand, allScores } = calculateScores(finalResponses);
+    // const { selectedBrand, allScores } = calculateScores(finalResponses);
+    // console.log(selectedBrand);
     // const selectedBrand ="9";
     //  console.log("Selected Brand:", selectedBrand);
     //  console.log("allScores",allScores);
     //  console.log("Scores:", allScores);
     // let testID='9';
-    if(selectedBrand===import.meta.env.REACT_APP_PAYCOR_FORM_ID){
-      // console.log("change paycor")
-      updatePaycorResponseFormat(finalResponses)
-    }
+     if(selectedBrand===env.PAYCOR_FORM_ID){
+      //  console.log("change paycor")
+     updatePaycorResponseFormat(finalResponses)
+     }
     //  finalResponses["email"]["answer"] = testEmail[selectedBrand];
       // finalResponses["email"]["answer"] = "sonary3@adptest.com";
 
@@ -392,8 +397,8 @@ export const QuestionnaireHandlers = (
 
     sendImpressions(
       finalResponses,
-      import.meta.env.REACT_APP_FINAL_SUBMIT_EVENT_NAME,
-      import.meta.env.REACT_APP_STREAM_FINAL_NAME,
+      env.FINAL_SUBMIT_EVENT_NAME,
+      env.STREAM_FINAL_NAME,
       selectedBrand
     );
     dispatch({

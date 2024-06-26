@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 
 import QuestionnaireLayout from "@/layouts/QuestionnaireLayout";
 import { useQuestionnaire } from "@/context/QuestionnaireContext";
@@ -21,7 +21,6 @@ import SSLIcon from "@/components/UI/Form/SSLIcon";
 
 import styles from "./Questionnaire.module.css";
 import useIsWideScreen from "@/hooks/useIsWideScreen";
-import { useContext } from "react";
 import OsanoVisibilityContext from "@/context/OsanoVisibilityContext";
 
 const Questionnaire = () => {

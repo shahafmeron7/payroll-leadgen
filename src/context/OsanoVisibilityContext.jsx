@@ -2,11 +2,8 @@
 import React, { createContext, useState, useEffect,useRef } from 'react';
 import { buildEventData,sendImpressions } from '@/utils/impression/impressionUtils';
 import { useQuestionnaire } from './QuestionnaireContext';
+import env from '@/utils/data/env';
 
-const user_action_accept_cookies = import.meta.env.REACT_APP_USER_ACTION_CLICK_ACCEPT_COOKIES;
-const user_action_deny_cookies = import.meta.env.REACT_APP_USER_ACTION_CLICK_DENY_COOKIES;
-const user_event_name=import.meta.env.REACT_APP_USER_EVENT_NAME
-const stream_step_name=import.meta.env.REACT_APP_STREAM_STEP_NAME
 export const OsanoVisibilityContext = createContext({
   osanoShown: false,
   setOsanoShown: () => {}
@@ -45,17 +42,17 @@ export const OsanoVisibilityProvider = ({ children }) => {
 
        const handleAcceptClick = () => {
          sendImpressions(
-           buildEventData(currentQuestionRef.current, flowID, flowName, user_action_accept_cookies),
-           user_event_name,
-           stream_step_name
+           buildEventData(currentQuestionRef.current, flowID, flowName, env.USER_ACTION_CLICK_ACCEPT_COOKIES),
+           env.USER_EVENT_NAME,
+           env.STREAM_STEP_NAME
          );
        };
 
        const handleDenyClick = () => {
          sendImpressions(
-           buildEventData(currentQuestionRef.current, flowID, flowName, user_action_deny_cookies),
-           user_event_name,
-           stream_step_name
+           buildEventData(currentQuestionRef.current, flowID, flowName, env.USER_ACTION_CLICK_DENY_COOKIES),
+           env.USER_EVENT_NAME,
+           env.STREAM_STEP_NAME
          );
        };
 
