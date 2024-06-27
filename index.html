@@ -20,7 +20,10 @@
       console.log('gtm loaded');
       var eventsTypes = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'touchmove']
       var addEventToLayerFn = function(e) {
-          e.preventDefault()
+        // if (e.type !== 'touchstart' && e.type !== 'touchmove') {
+        //     e.preventDefault();
+        // }
+           e.preventDefault()
           e.stopImmediatePropagation()
           e.stopPropagation()
           dataLayer.push({
@@ -35,7 +38,7 @@
           }
       }
       for (var i = 0; i < eventsTypes.length; i++) {
-          window.addEventListener(eventsTypes[i], addEventToLayerFn,{passive:false})
+        window.addEventListener(eventsTypes[i], addEventToLayerFn);
       }
   }
   )(window, document, 'script', 'dataLayer', 'GTM-5VNPHSL');</script>
